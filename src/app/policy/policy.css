@@ -1,0 +1,81 @@
+.section-header {
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #0066cc;
+}
+
+.section-header h2 {
+  color: #1a1f36;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: #7f8696;
+  font-size: 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.alert {
+  border-radius: 8px;
+  border-left: 4px solid;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-left-color: #10b981;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+  border-left-color: #ef4444;
+}
+
+.badge {
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.badge-info {
+  background-color: #dbeafe;
+  color: #0c4a6e;
+}
+
+.policy-type-life {
+  background-color: #fce7f3 !important;
+  color: #831843 !important;
+}
+
+.policy-type-health {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+.policy-type-vehicle {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+.policy-type-home {
+  background-color: #ddd6fe !important;
+  color: #4c1d95 !important;
+}
+
+.policy-type-travel {
+  background-color: #cffafe !important;
+  color: #164e63 !important;
+}
+
+.table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+h2, h4 {
+  font-weight: 600;
+}

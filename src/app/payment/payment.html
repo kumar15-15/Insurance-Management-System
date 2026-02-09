@@ -1,0 +1,130 @@
+<div class="container mt-4">
+  <!-- Section Header -->
+  <div class="section-header mb-4">
+    <h2>Manage Payments</h2>
+    <p>Process and track insurance premium payments</p>
+  </div>
+
+  <!-- Success Alert -->
+  <div class="alert alert-success" *ngIf="showSuccess" role="alert">
+    <strong>✅ Success!</strong> {{ successMessage }}
+  </div>
+
+  <!-- Error Alert -->
+  <div class="alert alert-danger" *ngIf="showError" role="alert">
+    <strong>⚠️ Error!</strong> {{ errorMessage }}
+  </div>
+
+  <!-- Payment Form -->
+  <div class="card p-4 mb-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Record New Payment</h4>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Customer ID <span class="text-danger">*</span></label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="payment.customerId"
+            name="customerId"
+            placeholder="Enter customer ID">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Policy ID <span class="text-danger">*</span></label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="payment.policyId"
+            name="policyId"
+            placeholder="Enter policy ID">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Amount <span class="text-danger">*</span></label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="payment.amount"
+            name="amount"
+            placeholder="Enter payment amount"
+            step="0.01"
+            min="0.01">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Status</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="payment.paymentStatus"
+            name="paymentStatus"
+            readonly
+            style="background-color: #f9fafb; cursor: not-allowed;">
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="makePayment()">
+        <span style="margin-right: 0.5rem;">💳</span> Process Payment
+      </button>
+    </form>
+  </div>
+
+  <!-- Payment History -->
+  <div class="card p-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Payment History</h4>
+    
+    <div class="table-responsive" *ngIf="payments.length > 0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer ID</th>
+            <th>Policy ID</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of payments; let i = index">
+            <td><strong>{{ i + 1 }}</strong></td>
+            <td>{{ p.customerId }}</td>
+            <td>{{ p.policyId }}</td>
+            <td><strong>₹ {{ p.amount }}</strong></td>
+            <td>{{ p.paymentDate }}</td>
+            <td>
+              <span class="badge badge-success">{{ p.paymentStatus }}</span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deletePayment(i)" title="Delete payment">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted" *ngIf="payments.length === 0" style="text-align: center; padding: 2rem;">
+      No payments recorded yet.
+    </p>
+  </div>
+
+  <!-- Need Help Section -->
+  <div class="card mt-5 p-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; border: none; text-align: center; color: white;">
+    <h2 style="font-size: 3rem; margin-bottom: 1rem;">❓</h2>
+    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Need Help?</h3>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Contact support team for assistance</p>
+    <button 
+      class="btn btn-light btn-lg" 
+      (click)="openSupportChat()"
+      style="font-weight: 600; padding: 12px 40px; border-radius: 25px; color: #667eea;">
+      Get Support
+    </button>
+  </div>
+</div>
+
+<!-- Chatbot Component -->
+<app-chatbot #chatbot></app-chatbot>

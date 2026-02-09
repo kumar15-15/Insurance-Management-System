@@ -1,0 +1,77 @@
+<div class="container mt-5 mb-5">
+  <!-- Header -->
+  <div class="row mb-5">
+    <div class="col-md-8">
+      <h1 style="color: #1a1f36; font-size: 2.5rem; margin-bottom: 0.5rem;">Welcome to Shield Insurance</h1>
+      <p style="color: #7f8696; font-size: 1.1rem;">Manage your insurance policies with ease</p>
+    </div>
+    <div class="col-md-4 text-end">
+      <button class="btn btn-danger btn-lg" (click)="logout()">
+        <span style="margin-right: 0.5rem;">🚪</span> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Dashboard Cards -->
+  <div class="row g-4">
+    <!-- Customers Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-icon">👥</div>
+        <h5 class="card-title">Customers</h5>
+        <p class="card-description">Register and manage customer information</p>
+        <a routerLink="/customer" class="btn btn-primary btn-sm w-100">
+          Manage Customers
+        </a>
+      </div>
+    </div>
+
+    <!-- Policies Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-icon">📋</div>
+        <h5 class="card-title">Policies</h5>
+        <p class="card-description">Create and manage insurance policies</p>
+        <a routerLink="/policy" class="btn btn-primary btn-sm w-100">
+          Manage Policies
+        </a>
+      </div>
+    </div>
+
+    <!-- Customer Policies Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-icon">🔗</div>
+        <h5 class="card-title">Assignments</h5>
+        <p class="card-description">Assign policies to customers</p>
+        <a routerLink="/customer-policy" class="btn btn-primary btn-sm w-100">
+          Assign Policy
+        </a>
+      </div>
+    </div>
+
+    <!-- Payments Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-icon">💳</div>
+        <h5 class="card-title">Payments</h5>
+        <p class="card-description">View and process premium payments</p>
+        <a routerLink="/payment" class="btn btn-primary btn-sm w-100">
+          View Payments
+        </a>
+      </div>
+    </div>
+
+    <!-- Claims Card -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <div class="card-icon">📝</div>
+        <h5 class="card-title">Claims</h5>
+        <p class="card-description">Manage insurance claims and status</p>
+        <a routerLink="/claim" class="btn btn-primary btn-sm w-100">
+          File Claim
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="container mt-4">
+  <!-- Section Header -->
+  <div class="section-header mb-4">
+    <h2>Manage Policies</h2>
+    <p>Create and manage insurance policies</p>
+  </div>
+
+  <!-- Success Alert -->
+  <div class="alert alert-success" *ngIf="showSuccess" role="alert" style="border-radius: 8px;">
+    <strong>✅ Success!</strong> {{ successMessage }}
+  </div>
+
+  <!-- Error Alert -->
+  <div class="alert alert-danger" *ngIf="showError" role="alert" style="border-radius: 8px;">
+    <strong>⚠️ Error!</strong> {{ errorMessage }}
+  </div>
+
+  <!-- Policy Form -->
+  <div class="card p-4 mb-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Create New Policy</h4>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Policy Name <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="policy.policyName"
+            name="policyName"
+            placeholder="Enter policy name">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Policy Type <span class="text-danger">*</span></label>
+          <select
+            class="form-control"
+            [(ngModel)]="policy.policyType"
+            name="policyType">
+            <option value="">-- Select Type --</option>
+            <option value="Life">Life Insurance</option>
+            <option value="Health">Health Insurance</option>
+            <option value="Vehicle">Vehicle Insurance</option>
+            <option value="Home">Home Insurance</option>
+            <option value="Travel">Travel Insurance</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Premium Amount <span class="text-danger">*</span></label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="policy.premiumAmount"
+            name="premiumAmount"
+            placeholder="Enter premium amount"
+            step="0.01"
+            min="0.01">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Duration (Months) <span class="text-danger">*</span></label>
+          <select
+            class="form-control"
+            [(ngModel)]="policy.durationMonths"
+            name="durationMonths">
+            <option value="">-- Select Duration --</option>
+            <option value="3">3 months</option>
+            <option value="6">6 months</option>
+            <option value="12">1 year (12 months)</option>
+            <option value="24">2 years (24 months)</option>
+            <option value="36">3 years (36 months)</option>
+            <option value="60">5 years (60 months)</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="addPolicy()">
+        <span style="margin-right: 0.5rem;">➕</span> Create Policy
+      </button>
+    </form>
+  </div>
+
+  <!-- Policy List -->
+  <div class="card p-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Policy List</h4>
+    
+    <div class="table-responsive" *ngIf="policies.length > 0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Policy Name</th>
+            <th>Type</th>
+            <th>Premium Amount</th>
+            <th>Duration</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of policies; let i = index">
+            <td><strong>{{ i + 1 }}</strong></td>
+            <td>{{ p.policyName }}</td>
+            <td>
+              <span class="badge badge-info" [ngClass]="'policy-type-' + p.policyType.toLowerCase()">
+                {{ p.policyType }}
+              </span>
+            </td>
+            <td><strong>₹ {{ p.premiumAmount }}</strong></td>
+            <td>{{ p.durationMonths || '-' }} months</td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deletePolicy(i)" title="Delete policy">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted" *ngIf="policies.length === 0" style="text-align: center; padding: 2rem;">
+      No policies created yet.
+    </p>
+  </div>
+
+  <!-- Need Help Section -->
+  <div class="card mt-5 p-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; border: none; text-align: center; color: white;">
+    <h2 style="font-size: 3rem; margin-bottom: 1rem;">❓</h2>
+    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Need Help?</h3>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Contact support team for assistance</p>
+    <button 
+      class="btn btn-light btn-lg" 
+      (click)="openSupportChat()"
+      style="font-weight: 600; padding: 12px 40px; border-radius: 25px; color: #667eea;">
+      Get Support
+    </button>
+  </div>
+</div>
+
+<!-- Chatbot Component -->
+<app-chatbot #chatbot></app-chatbot>

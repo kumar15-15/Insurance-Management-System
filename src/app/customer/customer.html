@@ -1,0 +1,161 @@
+<div class="container mt-4">
+  <!-- Section Header -->
+  <div class="section-header mb-4">
+    <h2>Manage Customers</h2>
+    <p>Create and manage customer records</p>
+  </div>
+
+  <!-- Success Alert -->
+  <div class="alert alert-success" *ngIf="showSuccess" role="alert" style="border-radius: 8px; animation: slideDown 0.3s ease-out;">
+    <strong>✅ Success!</strong> {{ successMessage }}
+  </div>
+
+  <!-- Error Alert -->
+  <div class="alert alert-danger" *ngIf="showError" role="alert" style="border-radius: 8px; animation: slideDown 0.3s ease-out;">
+    <strong>⚠️ Error!</strong> {{ errorMessage }}
+  </div>
+
+  <!-- Customer Form -->
+  <div class="card p-4 mb-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Add New Customer</h4>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">First Name <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="customer.firstName"
+            name="firstName"
+            placeholder="Enter first name">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Last Name <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="customer.lastName"
+            name="lastName"
+            placeholder="Enter last name">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label">Email <span class="text-danger">*</span></label>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="customer.email"
+            name="email"
+            placeholder="Enter email address">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Phone <span class="text-danger">*</span></label>
+          <input
+            type="tel"
+            class="form-control"
+            [(ngModel)]="customer.phone"
+            name="phone"
+            placeholder="Enter 10-digit phone number"
+            pattern="[0-9]{10}"
+            maxlength="10">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address <span class="text-danger">*</span></label>
+        <textarea
+          class="form-control"
+          [(ngModel)]="customer.address"
+          name="address"
+          placeholder="Enter address"
+          rows="3"></textarea>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addCustomer()">
+        <span style="margin-right: 0.5rem;">➕</span> Add Customer
+      </button>
+    </form>
+  </div>
+
+  <!-- Customer List -->
+  <div class="card p-4">
+    <h4 class="mb-3" style="color: #1a1f36;">Customer List</h4>
+    
+    <div class="table-responsive" *ngIf="customers.length > 0">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of customers; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ c.firstName }}</td>
+            <td>{{ c.lastName }}</td>
+            <td><small>{{ c.email }}</small></td>
+            <td>{{ c.phone || '-' }}</td>
+            <td><small>{{ c.address || '-' }}</small></td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteCustomer(i)" title="Delete customer">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted" *ngIf="customers.length === 0" style="text-align: center; padding: 2rem;">
+      No customers added yet.
+    </p>
+  </div>
+
+  <!-- Need Help Section -->
+  <div class="card mt-5 p-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; border: none; text-align: center; color: white;">
+    <h2 style="font-size: 3rem; margin-bottom: 1rem;">❓</h2>
+    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Need Help?</h3>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Contact support team for assistance</p>
+    <button 
+      class="btn btn-light btn-lg" 
+      (click)="openSupportChat()"
+      style="font-weight: 600; padding: 12px 40px; border-radius: 25px; color: #667eea;">
+      Get Support
+    </button>
+  </div>
+</div>
+
+<!-- Chatbot Component -->
+<app-chatbot #chatbot></app-chatbot>
+
+<style>
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f9fafb !important;
+  }
+
+  .text-danger {
+    color: #ef4444;
+  }
+</style>

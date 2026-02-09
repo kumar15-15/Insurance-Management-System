@@ -1,0 +1,66 @@
+.section-header {
+  padding: 1.5rem 0;
+  border-bottom: 2px solid #0066cc;
+}
+
+.section-header h2 {
+  color: #1a1f36;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: #7f8696;
+  font-size: 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.alert {
+  border-radius: 8px;
+  border-left: 4px solid;
+  animation: slideDown 0.3s ease-out;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-left-color: #10b981;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #7f1d1d;
+  border-left-color: #ef4444;
+}
+
+.table-responsive {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.table thead th {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+  font-weight: 600;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+h2, h4 {
+  font-weight: 600;
+}

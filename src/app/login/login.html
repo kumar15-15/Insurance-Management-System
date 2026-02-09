@@ -1,0 +1,63 @@
+<div class="login-wrapper">
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="login-container">
+      <!-- Header -->
+      <div class="text-center mb-4">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🛡️</div>
+        <h2 style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #0066cc;">Shield Insurance</h2>
+        <p style="color: #7f8696; margin-top: 0.5rem;">Insurance Policy Management System</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div class="alert alert-danger" *ngIf="showError" role="alert" style="border-radius: 8px;">
+        <strong>Error!</strong> {{ errorMessage }}
+      </div>
+
+      <!-- Form -->
+      <form (keypress)="onKeyPress($event)">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            [(ngModel)]="username"
+            name="username"
+            placeholder="Enter your username"
+            autofocus
+            [disabled]="isLoading">
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control form-control-lg"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Enter your password"
+            [disabled]="isLoading">
+        </div>
+
+        <button 
+          type="button"
+          class="btn btn-primary w-100 btn-lg"
+          (click)="login()"
+          [disabled]="isLoading"
+          style="font-weight: 600; border-radius: 8px;">
+          <span *ngIf="!isLoading">Login Now</span>
+          <span *ngIf="isLoading">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Logging in...
+          </span>
+        </button>
+      </form>
+
+      <!-- Demo Credentials -->
+      <div class="alert alert-info mt-4" style="background-color: #dbeafe; color: #0c4a6e; border: none; border-radius: 8px;">
+        <small><strong>Demo Credentials:</strong></small><br/>
+        <small>Username: <code>admin</code></small><br/>
+        <small>Password: <code>admin123</code></small>
+      </div>
+    </div>
+  </div>
+</div>
